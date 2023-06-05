@@ -12,7 +12,8 @@ case class DapexMessage(
     update: Vector[UpdateDatumValue],
     insert: Vector[FieldValuePair],
     process: Vector[FieldValuePair],
-    response: Option[Response]
+    response: Option[Response],
+    pointer: Option[String]
 )
 
 object DapexMessage {

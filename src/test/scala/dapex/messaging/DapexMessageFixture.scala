@@ -52,7 +52,8 @@ trait DapexMessageFixture {
     update = update,
     insert = insert,
     process = process,
-    response = Some(response)
+    response = Some(response),
+    pointer = None
   )
 
   def getMessage(method: Method): DapexMessage =
