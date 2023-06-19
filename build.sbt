@@ -1,4 +1,6 @@
-ThisBuild / organization := "Event Driven Architecture with DAPEX"
+ThisBuild / organization := "DAPEX"
+
+ThisBuild / version := "0.1.2"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -19,6 +21,9 @@ lazy val root = (project in file("."))
     Compile / doc / sources := Seq.empty,
     scalacOptions ++= Scalac.options,
   )
+
+githubOwner := "TheDiscProg"
+githubRepository := "dapex-messaging"
 
 addCommandAlias("clntst", ";clean;scalafmt;test:scalafmt;test;")
 addCommandAlias("cvrtst", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
