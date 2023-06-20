@@ -1,6 +1,7 @@
 package dapex.messaging
 
 import dapex.messaging.Method.{INSERT, PROCESS, RESPONSE, SELECT, UPDATE}
+import dapex.test.DapexMessageFixture
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 

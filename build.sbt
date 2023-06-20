@@ -1,6 +1,6 @@
 ThisBuild / organization := "DAPEX"
 
-ThisBuild / version := "0.1.3"
+ThisBuild / version := "0.1.5"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -18,7 +18,6 @@ lazy val root = (project in file("."))
   .settings(
     commonSettings,
     name := "dapex-messaging",
-    Compile / doc / sources := Seq.empty,
     scalacOptions ++= Scalac.options,
   )
 

@@ -1,4 +1,6 @@
-package dapex.messaging
+package dapex.test
+
+import dapex.messaging._
 
 trait DapexMessageFixture {
 
