@@ -4,7 +4,7 @@ import dapex.messaging._
 
 trait DapexMessageFixture {
 
-  val endpoint = Endpoint(resource = "customerRepo", method = "select")
+  val endpoint = Endpoint(resource = "service.auth", method = "select")
 
   val client = Client(
     clientId = "client1",
