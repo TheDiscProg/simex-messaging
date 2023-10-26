@@ -1,6 +1,6 @@
 package dapex.messaging
 
-import dapex.entities.ConversionError
+import dapex.entities.ConversionError.{ParsingJsonError, ParsingStringError}
 import dapex.messaging.Method.SELECT
 import dapex.test.DapexMessageFixture
 import io.circe.syntax._
@@ -37,7 +37,7 @@ class DapexMessageJsonTest
     val error = DapexMessage.deSerializeFromString(errorStr)
 
     error.isLeft shouldBe true
-    error.left.value shouldBe ConversionError(
+    error.left.value shouldBe ParsingStringError(
       "expected whitespace or eof got '{ ' (line 31, column 3)"
     )
   }
@@ -46,7 +46,7 @@ class DapexMessageJsonTest
     val error = DapexMessage.deSerializeFromString(badDapexMessage)
 
     error.isLeft shouldBe true
-    error.left.value shouldBe ConversionError(
+    error.left.value shouldBe ParsingJsonError(
       "DecodingFailure at .resource: Missing required field"
     )
   }

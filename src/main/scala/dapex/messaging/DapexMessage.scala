@@ -1,6 +1,7 @@
 package dapex.messaging
 
 import dapex.entities.ConversionError
+import dapex.entities.ConversionError.{ParsingJsonError, ParsingStringError}
 import dapex.messaging.Method.UNSUPPORTED
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.syntax.EncoderOps
@@ -27,11 +28,11 @@ object DapexMessage {
     parser
       .parse(jsonString)
       .fold(
-        err => Left(ConversionError(err.getMessage())),
+        err => Left(ParsingStringError(err.getMessage())),
         json =>
           json
             .as[DapexMessage]
-            .fold(e => Left(ConversionError(e.getMessage())), msg => Right(msg))
+            .fold(e => Left(ParsingJsonError(e.getMessage())), msg => Right(msg))
       )
 
   def isValid(message: DapexMessage): Boolean = {
