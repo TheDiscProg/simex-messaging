@@ -109,4 +109,38 @@ trait DapexMessageFixture {
           response = None
         )
     }
+
+  val badDapexMessage =
+    """
+      |{
+      |  "endpoint" : {
+      |    "method" : "select"
+      |  },
+      |  "client" : {
+      |    "clientId" : "client1",
+      |    "requestId" : "request1",
+      |    "sourceEndpoint" : "client",
+      |    "authorisation" : "securitytoken"
+      |  },
+      |  "originator" : {
+      |    "clientId" : "client1",
+      |    "requestId" : "request1",
+      |    "sourceEndpoint" : "client"
+      |  },
+      |  "criteria" : [
+      |    {
+      |      "field" : "customerId",
+      |      "value" : "1",
+      |      "operator" : "eq"
+      |    }
+      |  ],
+      |  "update" : [
+      |  ],
+      |  "insert" : [
+      |  ],
+      |  "process" : [
+      |  ],
+      |  "response" : null
+      |}
+      |""".stripMargin
 }

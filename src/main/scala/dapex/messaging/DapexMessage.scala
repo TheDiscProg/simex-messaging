@@ -1,8 +1,10 @@
 package dapex.messaging
 
+import dapex.entities.ConversionError
 import dapex.messaging.Method.UNSUPPORTED
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
-import io.circe.{Decoder, Encoder}
+import io.circe.syntax.EncoderOps
+import io.circe.{Decoder, Encoder, parser}
 
 case class DapexMessage(
     endpoint: Endpoint,
@@ -18,6 +20,19 @@ case class DapexMessage(
 object DapexMessage {
   implicit val encoder: Encoder[DapexMessage] = deriveEncoder
   implicit val decoder: Decoder[DapexMessage] = deriveDecoder
+
+  def serializeToString(msg: DapexMessage): String = msg.asJson.toString()
+
+  def deSerializeFromString(jsonString: String): Either[ConversionError, DapexMessage] =
+    parser
+      .parse(jsonString)
+      .fold(
+        err => Left(ConversionError(err.getMessage())),
+        json =>
+          json
+            .as[DapexMessage]
+            .fold(e => Left(ConversionError(e.getMessage())), msg => Right(msg))
+      )
 
   def isValid(message: DapexMessage): Boolean = {
     val method = Method.fromString(message.endpoint.method)
