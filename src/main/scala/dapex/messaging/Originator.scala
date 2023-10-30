@@ -6,7 +6,8 @@ import io.circe.{Decoder, Encoder}
 case class Originator(
     clientId: String,
     requestId: String,
-    sourceEndpoint: String
+    sourceEndpoint: String,
+    originalToken: String
 )
 
 object Originator {

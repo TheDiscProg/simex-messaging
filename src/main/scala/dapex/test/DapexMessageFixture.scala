@@ -14,7 +14,12 @@ trait DapexMessageFixture {
   )
 
   val originator =
-    Originator(clientId = "client1", requestId = "request1", sourceEndpoint = "client")
+    Originator(
+      clientId = "client1",
+      requestId = "request1",
+      sourceEndpoint = "client",
+      originalToken = "security123"
+    )
 
   val criteria = Vector(
     Criterion(field = "customerId", value = "1", operator = "eq")
@@ -50,6 +55,7 @@ trait DapexMessageFixture {
     endpoint = endpoint,
     client = client,
     originator = originator,
+    entity = None,
     criteria = criteria,
     update = update,
     insert = insert,
@@ -62,6 +68,7 @@ trait DapexMessageFixture {
       case Method.SELECT =>
         dapexMessage.copy(
           endpoint = dapexMessage.endpoint.copy(method = "select"),
+          entity = Some(Entity("person")),
           update = Vector(),
           insert = Vector(),
           process = Vector(),
@@ -70,6 +77,7 @@ trait DapexMessageFixture {
       case Method.UPDATE =>
         dapexMessage.copy(
           endpoint = dapexMessage.endpoint.copy(method = "update"),
+          entity = Some(Entity("person")),
           criteria = criteria :+ Criterion(field = "customerId", value = "1", operator = "eq"),
           insert = Vector(),
           process = Vector(),
@@ -78,7 +86,17 @@ trait DapexMessageFixture {
       case Method.INSERT =>
         dapexMessage.copy(
           endpoint = dapexMessage.endpoint.copy(method = "insert"),
+          entity = Some(Entity("person")),
           criteria = Vector(),
+          update = Vector(),
+          process = Vector(),
+          response = None
+        )
+      case Method.DELETE =>
+        dapexMessage.copy(
+          endpoint = dapexMessage.endpoint.copy(method = "delete"),
+          entity = Some(Entity("person")),
+          criteria = criteria :+ Criterion(field = "customerId", value = "1", operator = "eq"),
           update = Vector(),
           process = Vector(),
           response = None
@@ -125,7 +143,11 @@ trait DapexMessageFixture {
       |  "originator" : {
       |    "clientId" : "client1",
       |    "requestId" : "request1",
-      |    "sourceEndpoint" : "client"
+      |    "sourceEndpoint" : "client",
+      |    "originalToken" : "securitytoken"
+      |  },
+      |  "entity" : {
+      |    "name" : "person"
       |  },
       |  "criteria" : [
       |    {

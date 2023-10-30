@@ -1,6 +1,6 @@
 package dapex.messaging
 
-import dapex.messaging.Method.{INSERT, PROCESS, RESPONSE, SELECT, UPDATE}
+import dapex.messaging.Method.{DELETE, INSERT, PROCESS, RESPONSE, SELECT, UPDATE}
 import dapex.test.DapexMessageFixture
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
@@ -63,6 +63,18 @@ class DapexMessageTest extends AnyFlatSpec with DapexMessageFixture {
     val insert = getMessage(INSERT).copy(insert = Vector())
 
     DapexMessage.isValid(insert) shouldBe false
+  }
+
+  it should "verify delete request" in {
+    val delete = getMessage(DELETE)
+
+    DapexMessage.isValid(delete) shouldBe true
+  }
+
+  it should "not verify delete request when criteria section is empty" in {
+    val delete = getMessage(DELETE).copy(criteria = Vector())
+
+    DapexMessage.isValid(delete) shouldBe false
   }
 
   it should "verify process request" in {

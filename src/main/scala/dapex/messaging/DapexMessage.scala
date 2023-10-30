@@ -11,6 +11,7 @@ case class DapexMessage(
     endpoint: Endpoint,
     client: Client,
     originator: Originator,
+    entity: Option[Entity],
     criteria: Vector[Criterion],
     update: Vector[UpdateDatumValue],
     insert: Vector[FieldValuePair],
@@ -44,6 +45,8 @@ object DapexMessage {
         checkUpdateValidity(message)
       case Method.INSERT =>
         checkInsertValidity(message)
+      case Method.DELETE =>
+        checkDeleteValidity(message)
       case Method.PROCESS =>
         checkProcessValidity(message)
       case Method.RESPONSE =>
@@ -54,15 +57,23 @@ object DapexMessage {
   }
 
   def checkSelectValidity(message: DapexMessage): Boolean =
-    checkEndPointValidity(message)
+    checkEndPointValidity(message) && message.entity.isDefined
 
   def checkUpdateValidity(message: DapexMessage): Boolean =
     checkEndPointValidity(message) &&
+      message.entity.isDefined &&
       message.update.nonEmpty
 
   def checkInsertValidity(message: DapexMessage): Boolean =
     checkEndPointValidity(message) &&
+      message.entity.isDefined &&
       message.insert.nonEmpty
+
+  // As the DELETE can be quite destructive, at least one criterion must be present!
+  def checkDeleteValidity(message: DapexMessage): Boolean =
+    checkEndPointValidity(message) &&
+      message.entity.isDefined &&
+      message.criteria.nonEmpty
 
   def checkProcessValidity(message: DapexMessage): Boolean =
     checkEndPointValidity(message)

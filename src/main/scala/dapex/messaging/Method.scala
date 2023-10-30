@@ -21,6 +21,10 @@ case object Method extends StringEnum[Method] with StringCirceEnum[Method] {
     val value: String = "insert"
   }
 
+  case object DELETE extends Method {
+    val value: String = "delete"
+  }
+
   case object PROCESS extends Method {
     val value: String = "process"
   }
@@ -42,6 +46,7 @@ case object Method extends StringEnum[Method] with StringCirceEnum[Method] {
           case "select" => SELECT
           case "update" => UPDATE
           case "insert" => INSERT
+          case "delete" => DELETE
           case "process" => PROCESS
           case "response" => RESPONSE
           case _ => UNSUPPORTED
