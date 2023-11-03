@@ -2,10 +2,11 @@ package dapex.messaging
 
 import dapex.messaging.Method.{DELETE, INSERT, PROCESS, RESPONSE, SELECT, UPDATE}
 import dapex.test.DapexMessageFixture
+import org.scalatest.OptionValues
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
-class DapexMessageTest extends AnyFlatSpec with DapexMessageFixture {
+class DapexMessageTest extends AnyFlatSpec with DapexMessageFixture with OptionValues {
 
   it should "verify endpoint" in {
     DapexMessage.checkEndPointValidity(dapexMessage) shouldBe true
@@ -93,5 +94,25 @@ class DapexMessageTest extends AnyFlatSpec with DapexMessageFixture {
     val response = getMessage(RESPONSE).copy(response = None)
 
     DapexMessage.isValid(response) shouldBe false
+  }
+
+  it should "replace a criterion" in {
+    val criterion = Criterion("password", "hash", "EQ")
+
+    val result = authenticationRequest.replaceCriterion(criterion)
+
+    result.criteria.size shouldBe 2
+    val replaced = result.criteria.find(_.field == "password").value
+    replaced shouldBe criterion
+  }
+
+  it should "extract username and password" in {
+    val username = authenticationRequest.getUsername
+    val password = authenticationRequest.getPassword
+
+    username.isDefined shouldBe true
+    password.isDefined shouldBe true
+    username.value.value shouldBe "tester@test.com"
+    password.value.value shouldBe "password1234"
   }
 }

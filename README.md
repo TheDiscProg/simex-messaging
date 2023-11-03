@@ -15,3 +15,19 @@ information.
 * There are a number of validity check methods but perhaps the most important is `isValid(message: DapexMessage)`
 * Available in the object are CIRCE JSON encoder and decoder.
 
+## Additional Methods
+
+```scala
+def replaceCriterion(criterion: Criterion): DapexMessage
+
+def getUsername: Option[Criterion]
+
+def getPassword: Option[Criterion]
+
+def getAuthorisation: Option[Criterion]
+
+def getRefreshToken: Option[Criterion]
+
+def extractCriterionByField(field: String): Option[Criterion]
+```
+

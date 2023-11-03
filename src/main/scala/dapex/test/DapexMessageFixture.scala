@@ -63,6 +63,21 @@ trait DapexMessageFixture {
     response = Some(response)
   )
 
+  val authenticationRequest = dapexMessage.copy(
+    entity = Some(Entity("user")),
+    criteria = Vector(
+      Criterion("username", "tester@test.com", "EQ"),
+      Criterion("password", "password1234", "EQ")
+    )
+  )
+
+  val refreshTokenRequest = dapexMessage.copy(
+    entity = Some(Entity("refresh_token")),
+    criteria = Vector(
+      Criterion("refresh_token", "sometoken", "EQ")
+    )
+  )
+
   def getMessage(method: Method): DapexMessage =
     method match {
       case Method.SELECT =>

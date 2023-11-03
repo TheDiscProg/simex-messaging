@@ -17,7 +17,30 @@ case class DapexMessage(
     insert: Vector[FieldValuePair],
     process: Vector[FieldValuePair],
     response: Option[Response]
-)
+) {
+
+  val USERNAME = "username"
+  val PASSWORD = "password"
+  val AUTHORISATION = "authorization"
+  val REFRESH_TOKEN = "refresh_token"
+
+  def replaceCriterion(criterion: Criterion): DapexMessage =
+    this
+      .copy(
+        criteria = this.criteria.filter(!_.field.equalsIgnoreCase(criterion.field)) :+ criterion
+      )
+
+  def getUsername: Option[Criterion] = extractCriterionByField(USERNAME)
+
+  def getPassword: Option[Criterion] = extractCriterionByField(PASSWORD)
+
+  def getAuthorisation: Option[Criterion] = extractCriterionByField(AUTHORISATION)
+
+  def getRefreshToken: Option[Criterion] = extractCriterionByField(REFRESH_TOKEN)
+
+  def extractCriterionByField(field: String): Option[Criterion] =
+    this.criteria.find(_.field.equalsIgnoreCase(field))
+}
 
 object DapexMessage {
   implicit val encoder: Encoder[DapexMessage] = deriveEncoder
