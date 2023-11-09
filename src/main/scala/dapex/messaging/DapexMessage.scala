@@ -21,7 +21,7 @@ case class DapexMessage(
 
   val USERNAME = "username"
   val PASSWORD = "password"
-  val AUTHORISATION = "authorization"
+  val AUTHORIZATION = "authorization"
   val REFRESH_TOKEN = "refresh_token"
 
   def replaceCriterion(criterion: Criterion): DapexMessage =
@@ -34,9 +34,11 @@ case class DapexMessage(
 
   def getPassword: Option[Criterion] = extractCriterionByField(PASSWORD)
 
-  def getAuthorisation: Option[Criterion] = extractCriterionByField(AUTHORISATION)
+  def getAuthorization: String = this.client.authorization
 
-  def getRefreshToken: Option[Criterion] = extractCriterionByField(REFRESH_TOKEN)
+  def getRefreshToken: Option[String] =
+    extractCriterionByField(REFRESH_TOKEN)
+      .map(_.value)
 
   def extractCriterionByField(field: String): Option[Criterion] =
     this.criteria.find(_.field.equalsIgnoreCase(field))

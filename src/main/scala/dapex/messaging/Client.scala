@@ -7,7 +7,7 @@ case class Client(
     clientId: String,
     requestId: String,
     sourceEndpoint: String,
-    authorisation: String
+    authorization: String
 )
 
 object Client {

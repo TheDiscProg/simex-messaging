@@ -115,4 +115,19 @@ class DapexMessageTest extends AnyFlatSpec with DapexMessageFixture with OptionV
     username.value.value shouldBe "tester@test.com"
     password.value.value shouldBe "password1234"
   }
+
+  it should "get authorization token" in {
+    val select = getMessage(SELECT)
+    val accessToken = select.getAuthorization
+
+    accessToken shouldBe "securitytoken"
+  }
+
+  it should "get refresh token" in {
+    val select = refreshTokenRequest
+    val refreshToken = select.getRefreshToken
+
+    refreshToken.isDefined shouldBe true
+    refreshToken.value shouldBe "sometoken"
+  }
 }

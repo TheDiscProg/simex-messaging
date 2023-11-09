@@ -10,7 +10,7 @@ trait DapexMessageFixture {
     clientId = "client1",
     requestId = "request1",
     sourceEndpoint = "client",
-    authorisation = "securitytoken"
+    authorization = "securitytoken"
   )
 
   val originator =
@@ -153,7 +153,7 @@ trait DapexMessageFixture {
       |    "clientId" : "client1",
       |    "requestId" : "request1",
       |    "sourceEndpoint" : "client",
-      |    "authorisation" : "securitytoken"
+      |    "authorization" : "securitytoken"
       |  },
       |  "originator" : {
       |    "clientId" : "client1",

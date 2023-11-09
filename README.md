@@ -24,9 +24,9 @@ def getUsername: Option[Criterion]
 
 def getPassword: Option[Criterion]
 
-def getAuthorisation: Option[Criterion]
+def getAuthorization: String
 
-def getRefreshToken: Option[Criterion]
+def getRefreshToken: Option[String]
 
 def extractCriterionByField(field: String): Option[Criterion]
 ```
