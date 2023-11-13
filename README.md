@@ -1,33 +1,40 @@
-# DAPEX Messaging
-DAPEX (Data Access and Process Execution) Messaging is part of the Event Driven Architecture (EPA) using DAPEX. 
+# Simex (Simple Message Exchange) Messaging API
+SIMEX (Simple Message Exchange) Messaging is part of the Event Driven Architecture (EPA) using Simex API. 
 
 This software is distributed under **GNU General Public License Version 3.**
 
-Please see the paper **Event Driven Architecture (EDA) using Data Access and Process Execution (DAPEX) Message** for more 
+Please see the paper **Event Driven Architecture (EDA) using Simple Message Exchange API** for more 
 information.
 
 ## How to use
 
-`DapexMessage` has the following methods:
+`Simex` class is the message used to communicate intention and data. Instances have the following helpful APIs:
 
-* `serializeToString`: Converts the message into a JSON formatted string for
-* `deSerializeFromString`: Converts a JSON string back into a Dapex message. The result is an `Either[ConversionError, DapexMessage]`
-* There are a number of validity check methods but perhaps the most important is `isValid(message: DapexMessage)`
-* Available in the object are CIRCE JSON encoder and decoder.
+* `getUsername`:- Gets an option of username defined in the data
+* `getPassword`:- Gets an option of password defined in the data
+* `getAuthorization`:- Gets the authorization token sent by the client
+* `getRefreshToken`:- Gets an option the refresh token
+* `replaceDatum(datum: Datum)`:- Replaces the datum in the data vector
+* `extractDatumByFieldname(field: String)`:- Gets an option of the datum with the matching field name
+* There is a `checkEndPointValidity` method in the class object to check for endpoint validity
 
-## Additional Methods
+`Simex` object class also has the following helpful methods:
 
-```scala
-def replaceCriterion(criterion: Criterion): DapexMessage
+* `serializeToString`:- Converts the message into a JSON formatted string
+* `deSerializeFromString`:- Converts a JSON string back into a Simex message. The result is an `Either[ConversionError, Simex]`
+* `checkEndPointValidity(message: Simex)`:- Checks that the endpoint has the minimum values defined
+* Available in the class object are CIRCE JSON encoder and decoder
 
-def getUsername: Option[Criterion]
+## Using Simex Messaging in your application
+This is available in Github repository - see the Github page on how to include it in your application.
 
-def getPassword: Option[Criterion]
+There is also a `simex.test.SimexTestFixture` trait that can provide helpful methods:
 
-def getAuthorization: String
-
-def getRefreshToken: Option[String]
-
-def extractCriterionByField(field: String): Option[Criterion]
-```
-
+* `endpoint`
+* `client`
+* `originator`
+* `simexMessage`:- a basic message with no data defined
+* `authenticationRequest`:- authentication request with endpoint entity defined as `authorization`
+* `refreshTokenRequest`:- a refresh token request
+* `getMessage(method: Method, entity: Option[String], data: Vector[Datum])`:- Uses `simexMessage`
+* `badSimexJson`:- as the name says!

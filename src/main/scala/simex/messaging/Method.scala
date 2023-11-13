@@ -1,4 +1,4 @@
-package dapex.messaging
+package simex.messaging
 
 import enumeratum.values.{StringCirceEnum, StringEnum, StringEnumEntry}
 

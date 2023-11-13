@@ -1,4 +1,4 @@
-package dapex.entities
+package simex.entities
 
 import enumeratum.{Enum, EnumEntry}
 

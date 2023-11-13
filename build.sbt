@@ -1,6 +1,6 @@
-ThisBuild / organization := "DAPEX"
+ThisBuild / organization := "simex"
 
-ThisBuild / version := "0.5.0"
+ThisBuild / version := "0.6.0"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -17,12 +17,12 @@ lazy val root = (project in file("."))
   )
   .settings(
     commonSettings,
-    name := "dapex-messaging",
+    name := "simex-messaging",
     scalacOptions ++= Scalac.options,
   )
 
 githubOwner := "TheDiscProg"
-githubRepository := "dapex-messaging"
+githubRepository := "simex-messaging"
 
 addCommandAlias("clntst", ";clean;scalafmt;test:scalafmt;test;")
 addCommandAlias("cvrtst", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")

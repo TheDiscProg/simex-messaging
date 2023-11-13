@@ -1,4 +1,4 @@
-package dapex.messaging
+package simex.messaging
 
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.{Decoder, Encoder}

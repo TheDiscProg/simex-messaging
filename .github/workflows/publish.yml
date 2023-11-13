@@ -1,4 +1,4 @@
-name: Publish DAPEX Messaging
+name: Publish Simex-Messaging
 on:
   push:
     branches:
