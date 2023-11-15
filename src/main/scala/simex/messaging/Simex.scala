@@ -13,12 +13,7 @@ case class Simex(
     originator: Originator,
     data: Vector[Datum]
 ) {
-
-  val USERNAME = "username"
-  val PASSWORD = "password"
-  val AUTHORIZATION = "authorization"
-  val REFRESH_TOKEN = "refresh_token"
-
+  import Simex._
   def getUsername: Option[String] = extractDatumByFieldname(USERNAME).map(_.value)
 
   def getPassword: Option[String] = extractDatumByFieldname(PASSWORD).map(_.value)
@@ -42,6 +37,13 @@ case class Simex(
 object Simex {
   implicit val encoder: Encoder[Simex] = deriveEncoder
   implicit val decoder: Decoder[Simex] = deriveDecoder
+
+  val USERNAME = "username"
+  val PASSWORD = "password"
+  val AUTHENTICATION_ENTITY = "authentication"
+  val REFRESH_TOKEN_ENTITY = "refresh"
+  val AUTHORIZATION = "authorization"
+  val REFRESH_TOKEN = "refresh_token"
 
   def serializeToString(msg: Simex): String = msg.asJson.toString()
 

@@ -1,6 +1,7 @@
 package simex.test
 
 import simex.messaging._
+import simex.messaging.Simex._
 
 trait SimexTestFixture {
 
@@ -33,7 +34,7 @@ trait SimexTestFixture {
   )
 
   val authenticationRequest = simexMessage.copy(
-    endpoint = simexMessage.endpoint.copy(entity = Some(simexMessage.AUTHORIZATION)),
+    endpoint = simexMessage.endpoint.copy(entity = Some(AUTHENTICATION_ENTITY)),
     data = Vector(
       Datum("username", "tester@test.com", None),
       Datum("password", "password1234", None)
@@ -41,7 +42,7 @@ trait SimexTestFixture {
   )
 
   val refreshTokenRequest = simexMessage.copy(
-    endpoint = simexMessage.endpoint.copy(entity = Some(simexMessage.REFRESH_TOKEN)),
+    endpoint = simexMessage.endpoint.copy(entity = Some(REFRESH_TOKEN)),
     data = Vector(
       Datum("refresh_token", "sometoken", None)
     )
