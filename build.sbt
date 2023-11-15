@@ -1,6 +1,6 @@
 ThisBuild / organization := "simex"
 
-ThisBuild / version := "0.6.0"
+ThisBuild / version := "0.6.1"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -24,5 +24,5 @@ lazy val root = (project in file("."))
 githubOwner := "TheDiscProg"
 githubRepository := "simex-messaging"
 
-addCommandAlias("clntst", ";clean;scalafmt;test:scalafmt;test;")
-addCommandAlias("cvrtst", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
+addCommandAlias("cleanTest", ";clean;scalafmt;test:scalafmt;test;")
+addCommandAlias("cleanCoverage", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
