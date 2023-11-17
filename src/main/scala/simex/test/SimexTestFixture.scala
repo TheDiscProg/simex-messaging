@@ -42,7 +42,7 @@ trait SimexTestFixture {
   )
 
   val refreshTokenRequest = simexMessage.copy(
-    endpoint = simexMessage.endpoint.copy(entity = Some(REFRESH_TOKEN)),
+    endpoint = simexMessage.endpoint.copy(entity = Some(REFRESH_TOKEN_ENTITY)),
     data = Vector(
       Datum("refresh_token", "sometoken", None)
     )
