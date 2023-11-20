@@ -23,7 +23,8 @@ trait SimexTestFixture {
       clientId = "client1",
       requestId = "request1",
       sourceEndpoint = "client",
-      originalToken = "security123"
+      originalToken = "security123",
+      security = "1"
     )
 
   val simexMessage = Simex(
@@ -103,7 +104,8 @@ trait SimexTestFixture {
       |    "clientId" : "client1",
       |    "requestId" : "request1",
       |    "sourceEndpoint" : "client",
-      |    "originalToken" : "securitytoken"
+      |    "originalToken" : "securitytoken",
+      |    "security": "1"
       |  },
       |  "data" : [
       |    {

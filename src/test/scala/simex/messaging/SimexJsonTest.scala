@@ -33,7 +33,7 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
 
     error.isLeft shouldBe true
     error.left.value shouldBe ParsingStringError(
-      "expected whitespace or eof got '{ ' (line 31, column 3)"
+      "expected whitespace or eof got '{ ' (line 32, column 3)"
     )
   }
 

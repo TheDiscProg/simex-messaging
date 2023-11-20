@@ -7,7 +7,8 @@ case class Originator(
     clientId: String,
     requestId: String,
     sourceEndpoint: String,
-    originalToken: String
+    originalToken: String,
+    security: String
 )
 
 object Originator {
