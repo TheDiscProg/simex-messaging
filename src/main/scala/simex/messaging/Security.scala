@@ -47,4 +47,17 @@ case object Security extends StringEnum[Security] with StringCirceEnum[Security]
         }
       case _ => FORBIDDEN
     }
+
+  def determineSecurity(sec1: Security, sec2: Security): Security = {
+    val sec1Level = sec1.level.toInt
+    val sec2Level = sec2.level.toInt
+    if (sec1Level == 0 || sec2Level == 0)
+      FORBIDDEN
+    else {
+      if (sec1Level > sec2Level)
+        sec1
+      else
+        sec2
+    }
+  }
 }

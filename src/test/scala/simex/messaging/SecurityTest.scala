@@ -43,4 +43,24 @@ class SecurityTest extends AnyFlatSpec with Matchers {
     val result = Security.fromString("3")
     result shouldBe ORIGINAL_TOKEN
   }
+
+  it should "return forbidden when one is forbidden" in {
+    val result = Security.determineSecurity(FORBIDDEN, BASIC)
+    result shouldBe FORBIDDEN
+  }
+
+  it should "return greater security when the first is greater" in {
+    val result = Security.determineSecurity(ORIGINAL_TOKEN, AUTHORIZED)
+    result shouldBe ORIGINAL_TOKEN
+  }
+
+  it should "return greater security when the second arg is greater" in {
+    val result = Security.determineSecurity(BASIC, AUTHORIZED)
+    result shouldBe AUTHORIZED
+  }
+
+  it should "handle when security levels are the same" in {
+    val result = Security.determineSecurity(AUTHORIZED, AUTHORIZED)
+    result shouldBe AUTHORIZED
+  }
 }
