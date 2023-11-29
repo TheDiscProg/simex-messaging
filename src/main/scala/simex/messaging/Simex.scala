@@ -40,8 +40,12 @@ object Simex {
 
   val USERNAME = "username"
   val PASSWORD = "password"
+  // Entity Definitions
   val AUTHENTICATION_ENTITY = "authentication"
   val REFRESH_TOKEN_ENTITY = "refresh"
+  val REGISTRATION_ENTITY = "registration"
+
+  // data field definitions
   val AUTHORIZATION = "authorization"
   val REFRESH_TOKEN = "refresh_token"
 
