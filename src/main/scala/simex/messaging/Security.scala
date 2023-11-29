@@ -48,7 +48,7 @@ case object Security extends StringEnum[Security] with StringCirceEnum[Security]
       case _ => FORBIDDEN
     }
 
-  def determineSecurity(sec1: Security, sec2: Security): Security = {
+  def determineHighestSecurity(sec1: Security, sec2: Security): Security = {
     val sec1Level = sec1.level.toInt
     val sec2Level = sec2.level.toInt
     if (sec1Level == 0 || sec2Level == 0)
@@ -60,4 +60,7 @@ case object Security extends StringEnum[Security] with StringCirceEnum[Security]
         sec2
     }
   }
+
+  def determineSecurityLevel(simex: Simex): Security =
+    fromString(simex.originator.security)
 }

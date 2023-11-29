@@ -3,8 +3,9 @@ package simex.messaging
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import simex.messaging.Security.{AUTHORIZED, BASIC, FORBIDDEN, ORIGINAL_TOKEN}
+import simex.test.SimexTestFixture
 
-class SecurityTest extends AnyFlatSpec with Matchers {
+class SecurityTest extends AnyFlatSpec with Matchers with SimexTestFixture {
 
   it should "return forbidden when string is null" in {
     val result = Security.fromString(null)
@@ -45,22 +46,28 @@ class SecurityTest extends AnyFlatSpec with Matchers {
   }
 
   it should "return forbidden when one is forbidden" in {
-    val result = Security.determineSecurity(FORBIDDEN, BASIC)
+    val result = Security.determineHighestSecurity(FORBIDDEN, BASIC)
     result shouldBe FORBIDDEN
   }
 
   it should "return greater security when the first is greater" in {
-    val result = Security.determineSecurity(ORIGINAL_TOKEN, AUTHORIZED)
+    val result = Security.determineHighestSecurity(ORIGINAL_TOKEN, AUTHORIZED)
     result shouldBe ORIGINAL_TOKEN
   }
 
   it should "return greater security when the second arg is greater" in {
-    val result = Security.determineSecurity(BASIC, AUTHORIZED)
+    val result = Security.determineHighestSecurity(BASIC, AUTHORIZED)
     result shouldBe AUTHORIZED
   }
 
   it should "handle when security levels are the same" in {
-    val result = Security.determineSecurity(AUTHORIZED, AUTHORIZED)
+    val result = Security.determineHighestSecurity(AUTHORIZED, AUTHORIZED)
     result shouldBe AUTHORIZED
+  }
+
+  it should "return the highest level of security of the message" in {
+    val result = Security.determineSecurityLevel(simexMessage)
+
+    result shouldBe BASIC
   }
 }
