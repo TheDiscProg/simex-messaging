@@ -1,6 +1,6 @@
 ThisBuild / organization := "simex"
 
-ThisBuild / version := "0.7.2"
+ThisBuild / version := "0.7.3"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
