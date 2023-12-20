@@ -24,7 +24,8 @@ trait SimexTestFixture {
       requestId = "request1",
       sourceEndpoint = "client",
       originalToken = "security123",
-      security = "1"
+      security = "1",
+      messageTTL = Some(255L)
     )
 
   val simexMessage = Simex(

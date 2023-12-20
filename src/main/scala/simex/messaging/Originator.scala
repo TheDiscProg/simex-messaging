@@ -8,7 +8,8 @@ case class Originator(
     requestId: String,
     sourceEndpoint: String,
     originalToken: String,
-    security: String
+    security: String,
+    messageTTL: Option[Long]
 )
 
 object Originator {
