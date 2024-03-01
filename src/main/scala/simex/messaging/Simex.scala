@@ -8,21 +8,28 @@ import io.circe.syntax.EncoderOps
 import io.circe.{Decoder, Encoder, parser}
 
 case class Simex(
-    endpoint: Endpoint,
+    destination: Endpoint,
     client: Client,
     originator: Originator,
     data: Vector[Datum]
 ) {
   import Simex._
-  def getUsername: Option[String] = extractDatumByFieldname(USERNAME).map(_.value)
+  def getUsername: Option[String] =
+    extractDatumByFieldname(USERNAME)
+      .map(_.value)
+      .flatMap(_.getLeft)
 
-  def getPassword: Option[String] = extractDatumByFieldname(PASSWORD).map(_.value)
+  def getPassword: Option[String] =
+    extractDatumByFieldname(PASSWORD)
+      .map(_.value)
+      .flatMap(_.getLeft)
 
   def getAuthorization: String = this.client.authorization
 
   def getRefreshToken: Option[String] =
     extractDatumByFieldname(REFRESH_TOKEN)
       .map(_.value)
+      .flatMap(_.getLeft)
 
   def replaceDatum(datum: Datum): Simex =
     this
@@ -63,10 +70,12 @@ object Simex {
       )
 
   def checkEndPointValidity(message: Simex): Boolean = {
-    val isResourceDefined = message.endpoint.resource.nonEmpty
-    val isMethodDefined = Method.fromString(message.endpoint.method) !=
+    val isResourceDefined = message.destination.resource.nonEmpty
+    val isMethodDefined = Method.fromString(message.destination.method) !=
       UNSUPPORTED
 
     isResourceDefined && isMethodDefined
   }
+
+  def setReturnToSender(msg: Simex): Simex = ???
 }

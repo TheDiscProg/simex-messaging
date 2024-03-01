@@ -1,10 +1,65 @@
 # Simex (Simple Message Exchange) Messaging API
-SIMEX (Simple Message Exchange) Messaging is part of the Event Driven Architecture (EDA) using Simex API. 
+SIMEX (Simple Message Exchange) Messaging API is a method for two entities to communicate with each other. The purposes of
+SIMEX API are:
+
+1. The message contains all necessary information for a service to act upon;
+2. The message does not rely on network protocol or service meta-data;
+3. The message is network protocol independant;
+4. All SIMEX messages have the same format.
 
 This software is distributed under **GNU General Public License Version 3.**
 
 Please see the paper **Event Driven Architecture (EDA) With Simple Message Exchange (EDA/SIMEX)** for more 
 information.
+
+## SIMEX Format
+The message can be in any format, such as JSON, XML, binary, etc. The manner in which SIMEX is transmitted 'across the wire'
+is irrelevant. However, the format of the message is important.
+
+In the following description of the message, an important concept to realise is that the message either originates from
+or has the destination of an `endpoint` - that is a service that has made a request of a service that handles the request, equivalent
+to a REST endpoint, except that the requester also has a defined endpoint.
+
+The message has the following fields:
+### destination
+The `Endpoint` that will eventually handle the request. This `endpoint` acts as an `orchestrator` that will prepare the 
+response to the `endpoint` that made the request, the `sourceEndpoint.`
+The `Endpoint` defines three fields:
+1. The resource - this is the unique identifier for the `endpoint` that handles the request.
+2. The method - that defines the action that the endpoint should carry out
+3. The entity (optional) - a business entity on which the action should be carried out on.
+
+### client
+The `Endpoint` that generated the request. In order for the right client to receive the message, and for the client to
+identify the response, two fields are required: `clientId` which must be unique across all the system, and `requestId` that 
+must be unique for each client.
+In addition to the above two fields, two additional fields are defined:
+1. `sourceEndpoint` - the endpoint that sent this request
+2. `authorization` - the security token that authenticates the request
+
+### originator
+As the `client` can change as the request is handled across multiple endpoints, the `originator` defines the original client
+that made this request. It has the following fields:
+1. `clientId` - ID of the client; must be unique
+2. `requestId` - ID of the original request
+3. `sourceEndpoint` - the `endpoint` that generated the request
+4. `originalToken` - the original security token that was included in request, can be same as the `client.authorization`
+5. `security` - the security level of this message*
+6. `messageTTL` - the time to keep the response, and not the request, alive before discarding it*
+
+*These values can be set by the client but can also be overridden by the 'handling' endpoint.
+
+Normally, the client that made the original request sets the `originator` fields. As other endpoints handle the request,
+the `originator` field remains unchanged.
+
+### data
+This is a list of `datum`:
+
+* `field` - the name of the field, i.e. `surname` etc.
+* `check` (optional) - optional checks as determined by the application. An example would be `equal to` in a SQL query.
+* `value` - Either a value, or another list of `datum` as defined by `Xor` (Exclusive OR), but not both.
+
+This data should be sufficient for the destination endpoint to carry out the request and prepare the response.
 
 ## How to use
 

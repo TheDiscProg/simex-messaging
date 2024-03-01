@@ -2,6 +2,7 @@ package simex.test
 
 import simex.messaging._
 import simex.messaging.Simex._
+import thediscprog.slogic.Xor
 
 trait SimexTestFixture {
 
@@ -29,24 +30,24 @@ trait SimexTestFixture {
     )
 
   val simexMessage = Simex(
-    endpoint = endpoint,
+    destination = endpoint,
     client = client,
     originator = originator,
     data = Vector()
   )
 
   val authenticationRequest = simexMessage.copy(
-    endpoint = simexMessage.endpoint.copy(entity = Some(AUTHENTICATION_ENTITY)),
+    destination = simexMessage.destination.copy(entity = Some(AUTHENTICATION_ENTITY)),
     data = Vector(
-      Datum("username", "tester@test.com", None),
-      Datum("password", "password1234", None)
+      Datum("username", None, Xor.applyLeft("tester@test.com")),
+      Datum("password", None, Xor.applyLeft("password1234"))
     )
   )
 
   val refreshTokenRequest = simexMessage.copy(
-    endpoint = simexMessage.endpoint.copy(entity = Some(REFRESH_TOKEN_ENTITY)),
+    destination = simexMessage.destination.copy(entity = Some(REFRESH_TOKEN_ENTITY)),
     data = Vector(
-      Datum("refresh_token", "sometoken", None)
+      Datum("refresh_token", None, Xor.applyLeft("sometoken"))
     )
   )
 
@@ -54,37 +55,37 @@ trait SimexTestFixture {
     method match {
       case Method.SELECT =>
         simexMessage.copy(
-          endpoint = simexMessage.endpoint.copy(method = "select", entity = entity),
+          destination = simexMessage.destination.copy(method = "select", entity = entity),
           data = data
         )
       case Method.UPDATE =>
         simexMessage.copy(
-          endpoint = simexMessage.endpoint.copy(method = "update", entity = entity),
+          destination = simexMessage.destination.copy(method = "update", entity = entity),
           data = data
         )
       case Method.INSERT =>
         simexMessage.copy(
-          endpoint = simexMessage.endpoint.copy(method = "insert", entity = entity),
+          destination = simexMessage.destination.copy(method = "insert", entity = entity),
           data = data
         )
       case Method.DELETE =>
         simexMessage.copy(
-          endpoint = simexMessage.endpoint.copy(method = "delete", entity = entity),
+          destination = simexMessage.destination.copy(method = "delete", entity = entity),
           data = data
         )
       case Method.PROCESS =>
         simexMessage.copy(
-          endpoint = simexMessage.endpoint.copy(method = "process", entity = entity),
+          destination = simexMessage.destination.copy(method = "process", entity = entity),
           data = data
         )
       case Method.RESPONSE =>
         simexMessage.copy(
-          endpoint = simexMessage.endpoint.copy(method = "response", entity = entity),
+          destination = simexMessage.destination.copy(method = "response", entity = entity),
           data = data
         )
       case _ =>
         simexMessage.copy(
-          endpoint = simexMessage.endpoint.copy(method = "unsupported", entity = entity),
+          destination = simexMessage.destination.copy(method = "unsupported", entity = entity),
           data = data
         )
     }
@@ -92,7 +93,7 @@ trait SimexTestFixture {
   val badSimexJson =
     """
       |{
-      |  "endpoint" : {
+      |  "destination" : {
       |    "method" : "select"
       |  },
       |  "client" : {
@@ -111,8 +112,8 @@ trait SimexTestFixture {
       |  "data" : [
       |    {
       |      "field" : "customerId",
-      |      "value" : "1",
-      |      "check" : "eq"
+      |      "check" : "eq",
+      |      "value" : "1"
       |    }
       |  ]
       |}
