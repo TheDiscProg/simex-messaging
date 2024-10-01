@@ -2,7 +2,7 @@ package simex.test
 
 import simex.messaging._
 import simex.messaging.Simex._
-import thediscprog.slogic.Xor
+import io.github.thediscprog.slogic.Xor
 
 trait SimexTestFixture {
 

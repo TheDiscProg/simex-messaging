@@ -5,7 +5,7 @@ import io.circe.syntax._
 import org.scalatest.EitherValues
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import thediscprog.slogic.Xor
+import io.github.thediscprog.slogic.Xor
 
 /** These tests are for testing the JSON serializing/deserializing as there is
   * a recursive XOR in the Datum.

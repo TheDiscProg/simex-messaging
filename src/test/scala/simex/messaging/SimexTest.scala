@@ -2,7 +2,8 @@ package simex.messaging
 
 import org.scalatest.OptionValues
 import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.matchers.should.Matchers.shouldBe
 import simex.test.SimexTestFixture
 
 class SimexTest extends AnyFlatSpec with SimexTestFixture with OptionValues {

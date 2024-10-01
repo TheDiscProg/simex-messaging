@@ -5,7 +5,7 @@ import io.circe.generic.auto._
 import io.circe.syntax._
 import io.circe._
 import simex.entities.ConversionError.ParsingJsonError
-import thediscprog.slogic.Xor
+import io.github.thediscprog.slogic.Xor
 
 /** Class to hold a single piece of data - hence datum
   * @param field - the name of the datum
