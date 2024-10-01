@@ -40,7 +40,6 @@ ThisBuild / publishMavenStyle := true
 ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
 ThisBuild / publishTo := sonatypePublishToBundle.value
 ThisBuild / sonatypeProfileName := "io.github.thediscprog"
-ThisBuild / publishMavenStyle := true
 ThisBuild / licenses := List("GNU-3.0" -> url("https://www.gnu.org/licenses/gpl-3.0.en.html"))
 ThisBuild / homepage := Some(url("https://github.com/TheDiscProg/simex-messaging"))
 ThisBuild / sonatypeProjectHosting := Some(GitHubHosting("TheDiscProg", "simex-messaging", "TheDiscProg@gmail.com"))
@@ -64,5 +63,6 @@ sonatypeCredentialHost := "central.sonatype.com"
 sonatypeRepository := "https://central.sonatype.com/api/v1/publisher/"
 
 ThisBuild / versionScheme := Some("early-semver")
+
 addCommandAlias("cleanTest", ";clean;scalafmt;test:scalafmt;test;")
 addCommandAlias("cleanCoverage", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
