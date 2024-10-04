@@ -8,6 +8,7 @@ env:
   SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
   SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
   PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+  PGP_SECRET_KEY: ${{ PGP_SECRET_KEY }}
 jobs:
   test:
     strategy:
@@ -28,7 +29,7 @@ jobs:
       - name: Build and test
         shell: bash
         run: |
-          gpg --batch --import pgp-key.gpg
+          echo -n "$PGP_SECRET_KEY" | base64 --decode | gpg --import
           gpg --list-keys
-          sbt clean +test +publishSigned sonatypeBundleRelease
+          sbt clean +tests +publishSigneds sonatypeBundleReleases
 
