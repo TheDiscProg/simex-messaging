@@ -1,4 +1,4 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.{Decoder, Encoder}

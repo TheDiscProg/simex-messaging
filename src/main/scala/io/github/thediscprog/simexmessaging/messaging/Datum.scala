@@ -1,10 +1,10 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
 import io.circe.Decoder.Result
 import io.circe.generic.auto._
 import io.circe.syntax._
 import io.circe._
-import simex.entities.ConversionError.ParsingJsonError
+import io.github.thediscprog.simexmessaging.entities.ConversionError.ParsingJsonError
 import io.github.thediscprog.slogic.Xor
 
 /** Class to hold a single piece of data - hence datum

@@ -1,4 +1,4 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
 import io.circe.parser
 import io.circe.syntax._

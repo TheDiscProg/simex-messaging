@@ -1,11 +1,11 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
-import simex.entities.ConversionError
-import simex.entities.ConversionError.{ParsingJsonError, ParsingStringError}
-import simex.messaging.Method.UNSUPPORTED
+import io.github.thediscprog.simexmessaging.entities.ConversionError.{ParsingJsonError, ParsingStringError}
+import Method.UNSUPPORTED
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.syntax.EncoderOps
 import io.circe.{Decoder, Encoder, parser}
+import io.github.thediscprog.simexmessaging.entities.ConversionError
 
 case class Simex(
     destination: Endpoint,

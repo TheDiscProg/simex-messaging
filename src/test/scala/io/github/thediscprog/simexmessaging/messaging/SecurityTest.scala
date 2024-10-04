@@ -1,9 +1,9 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import simex.messaging.Security.{AUTHORIZED, BASIC, FORBIDDEN, ORIGINAL_TOKEN}
-import simex.test.SimexTestFixture
+import Security.{AUTHORIZED, BASIC, FORBIDDEN, ORIGINAL_TOKEN}
+import io.github.thediscprog.simexmessaging.test.SimexTestFixture
 
 class SecurityTest extends AnyFlatSpec with Matchers with SimexTestFixture {
 
