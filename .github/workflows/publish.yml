@@ -5,6 +5,10 @@ on:
       - '*'
 env:
   GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
+  SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+  SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+  PGP_SECRET: ${{ secrets.PGP_SECRET }}
+  PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
 jobs:
   test:
     strategy:
@@ -24,9 +28,5 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Build and test
         shell: bash
-      -  run: sbt test +publish
-         env:
-           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-           PGP_SECRET: ${{ secrets.PGP_SECRET }}
-           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+        run: sbt test +publish
+
