@@ -1,8 +1,8 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import simex.messaging.Method.{DELETE, INSERT, PROCESS, RESPONSE, SELECT, UNSUPPORTED, UPDATE}
+import Method.{DELETE, INSERT, PROCESS, RESPONSE, SELECT, UNSUPPORTED, UPDATE}
 
 class MethodTest extends AnyFlatSpec with Matchers {
 

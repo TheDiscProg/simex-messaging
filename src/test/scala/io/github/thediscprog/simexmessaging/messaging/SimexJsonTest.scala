@@ -1,11 +1,11 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
 import io.circe.syntax._
 import org.scalatest.EitherValues
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import simex.entities.ConversionError.{ParsingJsonError, ParsingStringError}
-import simex.test.SimexTestFixture
+import io.github.thediscprog.simexmessaging.entities.ConversionError.{ParsingJsonError, ParsingStringError}
+import io.github.thediscprog.simexmessaging.test.SimexTestFixture
 
 class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with EitherValues {
 
@@ -24,6 +24,7 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
     val deserialisedMsg = Simex.deSerializeFromString(testString)
 
     deserialisedMsg shouldBe Right(authRequest)
+    deserialisedMsg.value.destination.version shouldBe "v1"
   }
 
   it should "handle string to Json conversion errors" in {
@@ -33,7 +34,7 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
 
     error.isLeft shouldBe true
     error.left.value shouldBe ParsingStringError(
-      "expected whitespace or eof got '{ ' (line 33, column 3)"
+      "expected whitespace or eof got '{ ' (line 34, column 3)"
     )
   }
 

@@ -1,4 +1,4 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
 import enumeratum.values.{StringCirceEnum, StringEnum, StringEnumEntry}
 

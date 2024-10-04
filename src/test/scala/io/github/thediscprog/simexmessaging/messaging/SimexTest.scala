@@ -1,10 +1,10 @@
-package simex.messaging
+package io.github.thediscprog.simexmessaging.messaging
 
+import io.github.thediscprog.simexmessaging.test.SimexTestFixture
 import org.scalatest.OptionValues
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.matchers.should.Matchers.shouldBe
-import simex.test.SimexTestFixture
 
 class SimexTest extends AnyFlatSpec with SimexTestFixture with OptionValues {
 

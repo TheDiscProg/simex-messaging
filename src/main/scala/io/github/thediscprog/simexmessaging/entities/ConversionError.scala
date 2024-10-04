@@ -1,4 +1,4 @@
-package simex.entities
+package io.github.thediscprog.simexmessaging.entities
 
 import enumeratum.{Enum, EnumEntry}
 

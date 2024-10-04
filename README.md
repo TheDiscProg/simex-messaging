@@ -24,10 +24,11 @@ The message has the following fields:
 ### destination
 The `Endpoint` that will eventually handle the request. This `endpoint` acts as an `orchestrator` that will prepare the 
 response to the `endpoint` that made the request, the `sourceEndpoint.`
-The `Endpoint` defines three fields:
+The `Endpoint` defines four fields:
 1. The resource - this is the unique identifier for the `endpoint` that handles the request.
 2. The method - that defines the action that the endpoint should carry out
 3. The entity (optional) - a business entity on which the action should be carried out on.
+4. The version - defaults to 'v1' but allows the receiver to handle multiple versions of a request.
 
 ### client
 The `Endpoint` that generated the request. In order for the right client to receive the message, and for the client to
@@ -83,7 +84,7 @@ This data should be sufficient for the destination endpoint to carry out the req
 ## Using Simex Messaging in your application
 This is available in Github repository - see the Github page on how to include it in your application.
 
-There is also a `simex.test.SimexTestFixture` trait that can provide helpful methods:
+There is also a `SimexTestFixture` trait that can provide helpful methods:
 
 * `endpoint`
 * `client`
