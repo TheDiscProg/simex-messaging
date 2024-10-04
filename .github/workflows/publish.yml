@@ -29,5 +29,6 @@ jobs:
         shell: bash
         run: |
           gpg --import pgp-key.gpg
+          gpg --list-keys
           sbt clean +test +publishSigned sonatypeBundleRelease
 
