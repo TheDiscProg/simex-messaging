@@ -25,10 +25,9 @@ jobs:
         with:
           distribution: temurin
           java-version: ${{ matrix.java }}
-      - name: Setup PGP Key
-        shell: bash
-        run: gpg --import pgp-key.gpg
       - name: Build and test
         shell: bash
-        run: sbt +test +publishSigned sonatypeBundleRelease
+        run:
+          gpg --import pgp-key.gpg
+          sbt clean +test +publishSigned sonatypeBundleRelease
 
