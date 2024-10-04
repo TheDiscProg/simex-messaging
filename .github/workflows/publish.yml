@@ -8,6 +8,7 @@ env:
   SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
   SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
   PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+  GPG_TTY: $(tty)
 jobs:
   test:
     strategy:
