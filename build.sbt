@@ -59,6 +59,8 @@ ThisBuild / developers := List(
   )
 )
 
+usePgpKeyHex("FC6901A47E5DA2533DCF25D51615DCC33B57B2BF")
+
 sonatypeCredentialHost := "central.sonatype.com"
 sonatypeRepository := "https://central.sonatype.com/api/v1/publisher/"
 
