@@ -1,7 +1,7 @@
 package io.github.thediscprog.simexmessaging.test
 
 import io.github.thediscprog.simexmessaging.messaging.{Client, Datum, Endpoint, Method, Originator, Simex}
-import io.github.thediscprog.simexmessaging.messaging.Simex.*
+import io.github.thediscprog.simexmessaging.messaging.Simex._
 import io.github.thediscprog.slogic.Xor
 
 trait SimexTestFixture {
