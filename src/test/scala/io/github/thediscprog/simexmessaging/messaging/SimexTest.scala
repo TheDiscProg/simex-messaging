@@ -4,9 +4,8 @@ import io.github.thediscprog.simexmessaging.test.SimexTestFixture
 import org.scalatest.OptionValues
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import org.scalatest.matchers.should.Matchers.shouldBe
 
-class SimexTest extends AnyFlatSpec with SimexTestFixture with OptionValues {
+class SimexTest extends AnyFlatSpec with SimexTestFixture with Matchers with OptionValues {
 
   it should "verify destination" in {
     Simex.checkEndPointValidity(simexMessage) shouldBe true
