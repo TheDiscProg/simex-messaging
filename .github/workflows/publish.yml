@@ -28,8 +28,6 @@ jobs:
       - name: Build and test
         shell: bash
         run: |
-          sudo apt install GnuPG=p2.2.36
-          gpg --version
           gpg --import pgp-key.gpg
           sbt clean +test +publishSigned sonatypeBundleRelease
 
