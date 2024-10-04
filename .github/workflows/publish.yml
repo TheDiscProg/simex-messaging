@@ -31,5 +31,5 @@ jobs:
         run: |
           echo -n "$PGP_SECRET_KEY" | base64 --decode | gpg --batch --import
           gpg --list-keys
-          sbt clean +tests +publishSigneds sonatypeBundleReleases
+          sbt clean +test +publishSigned sonatypeBundleRelease
 
