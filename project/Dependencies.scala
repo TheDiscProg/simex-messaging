@@ -3,7 +3,7 @@ import sbt._
 object Dependencies {
 
   lazy val all = Seq(
-    "io.github.thediscprog" %% "slogic" % "0.3.0",
+    "io.github.thediscprog" %% "slogic" % "0.3.1",
     "io.circe" %% "circe-core" % "0.14.5",
     "io.circe" %% "circe-generic" % "0.14.5",
     "io.circe" %% "circe-parser" % "0.14.5",
