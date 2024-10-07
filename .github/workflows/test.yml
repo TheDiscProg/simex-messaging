@@ -1,4 +1,4 @@
-name: Publish Simex Messsaging
+name: Run tests on Simex Messsaging
 on:
   push:
     branches:
