@@ -1,8 +1,8 @@
 import sbt.librarymanagement.CrossVersion
 import sbt.url
-import xerial.sbt.Sonatype.*
+import xerial.sbt.Sonatype._
 
-lazy val scala2 = "2.13.14"
+lazy val scala2 = "2.13.15"
 lazy val scala3 = "3.5.1"
 lazy val supportedScalaVersions = List(scala2, scala3)
 
@@ -28,7 +28,7 @@ lazy val root = (project in file("."))
     crossScalaVersions := supportedScalaVersions
   )
 
-ThisBuild / version := "0.9.2"
+ThisBuild / version := "0.9.3"
 ThisBuild / organization := "io.github.thediscprog"
 ThisBuild / organizationName := "thediscprog"
 ThisBuild / organizationHomepage := Some(url("https://github.com/TheDiscProg"))
