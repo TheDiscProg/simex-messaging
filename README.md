@@ -9,7 +9,7 @@ SIMEX API are:
 
 This software is distributed under **GNU General Public License Version 3.**
 
-Please see the paper **Event Driven Architecture (EDA) With Simple Message Exchange (EDA/SIMEX)** for more 
+Please see the paper **[Simex API and SOAA Research Paper](https://github.com/TheDiscProg/SIMEX-API)** for more 
 information.
 
 ## SIMEX Format

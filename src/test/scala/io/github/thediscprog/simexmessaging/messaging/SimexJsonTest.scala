@@ -43,7 +43,7 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
 
     error.isLeft shouldBe true
     error.left.value shouldBe ParsingJsonError(
-      "DecodingFailure at .resource: Missing required field"
+      "DecodingFailure at .destination.resource: Missing required field"
     )
   }
 }

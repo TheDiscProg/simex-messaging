@@ -1,16 +1,20 @@
 import sbt._
 
 object Dependencies {
+  private lazy val circeVersion = "0.14.10"
+  private lazy val scalacticVersion = "3.2.19"
+  private lazy val enumeratumVersion = "1.7.5"
+  private lazy val scalaReflectVersion = "2.13.15"
 
   lazy val all = Seq(
     "io.github.thediscprog" %% "slogic" % "0.3.1",
-    "io.circe" %% "circe-core" % "0.14.5",
-    "io.circe" %% "circe-generic" % "0.14.5",
-    "io.circe" %% "circe-parser" % "0.14.5",
-    "org.scalactic" %% "scalactic" % "3.2.15",
-    "org.scalatest" %% "scalatest" % "3.2.15" % Test,
-    "com.beachape" %% "enumeratum" % "1.7.2",
-    "com.beachape" %% "enumeratum-circe" % "1.7.2",
-    "org.scala-lang" % "scala-reflect" % "2.13.10"
+    "io.circe" %% "circe-core" % circeVersion,
+    "io.circe" %% "circe-generic" % circeVersion,
+    "io.circe" %% "circe-parser" % circeVersion,
+    "org.scalactic" %% "scalactic" % scalacticVersion,
+    "com.beachape" %% "enumeratum" % enumeratumVersion,
+    "com.beachape" %% "enumeratum-circe" % enumeratumVersion,
+    "org.scala-lang" % "scala-reflect" % scalaReflectVersion,
+    "org.scalatest" %% "scalatest" % scalacticVersion % Test,
   )
 }
