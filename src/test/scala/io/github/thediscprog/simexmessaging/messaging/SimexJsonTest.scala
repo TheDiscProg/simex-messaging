@@ -23,8 +23,8 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
   it should "deserialize a Simex message" in {
     val deserialisedMsg = Simex.deSerializeFromString(testString)
 
-    deserialisedMsg shouldBe Right(authRequest)
-    deserialisedMsg.value.destination.version shouldBe "v1"
+    (deserialisedMsg == Right(authRequest) && 
+    deserialisedMsg.value.destination.version == "v1") shouldBe true
   }
 
   it should "handle string to Json conversion errors" in {
@@ -32,18 +32,18 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
 
     val error = Simex.deSerializeFromString(errorStr)
 
-    error.isLeft shouldBe true
-    error.left.value shouldBe ParsingStringError(
+    (error.isLeft &&
+    error.left.value == ParsingStringError(
       "expected whitespace or eof got '{ ' (line 34, column 3)"
-    )
+    )) shouldBe true
   }
 
   it should "handle json to simex conversion error" in {
     val error = Simex.deSerializeFromString(badSimexJson)
 
-    error.isLeft shouldBe true
-    error.left.value shouldBe ParsingJsonError(
+    (error.isLeft &&
+    error.left.value == ParsingJsonError(
       "DecodingFailure at .destination.resource: Missing required field"
-    )
+    )) shouldBe true
   }
 }

@@ -1,20 +1,24 @@
 # Simex (Simple Message Exchange) Messaging API
-SIMEX (Simple Message Exchange) Messaging API is a method for two entities to communicate with each other. The purposes of
-SIMEX API are:
+Simex (Simple Message Exchange) Messaging API is a method for two entities to communicate with each other over the network.
 
-1. The message contains all necessary information for a service to act upon;
-2. The message does not rely on network protocol or service meta-data;
-3. The message is network protocol independant;
-4. All SIMEX messages have the same format.
+It is designed to manage software complexity by:
+
+1. Simex message contains all necessary information for a service to act upon;
+2. Simex message does not rely on network protocol or service meta-data;
+3. Simex message is network protocol agnostic and can be transmitted from one network protocol to another without any transformation;
+4. Simex messages have the same structure regardless of the data.
 
 This software is distributed under **GNU General Public License Version 3.**
 
-Please see the paper **[Simex API and SOAA Research Paper](https://github.com/TheDiscProg/SIMEX-API)** for more 
+Please see the paper **[Managing Software Complexity and Security Research Paper](https://github.com/TheDiscProg/SIMEX-API)** for more 
 information.
 
+To use in a SBT project: 
+libraryDependencies += "io.github.thediscprog" %% "simex-messaging" % "0.9.4"
+
 ## SIMEX Format
-The message can be in any format, such as JSON, XML, binary, etc. The manner in which SIMEX is transmitted 'across the wire'
-is irrelevant. However, the format of the message is important.
+The message can be in any format, such as JSON, XML, binary, etc. The manner in which a Simex is transmitted 'across the wire'
+is irrelevant. However, the format of the message is important. This library comes with JSON encoders and decoders.
 
 In the following description of the message, an important concept to realise is that the message either originates from
 or has the destination of an `endpoint` - that is a service that has made a request of a service that handles the request, equivalent
