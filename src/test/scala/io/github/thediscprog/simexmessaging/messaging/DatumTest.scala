@@ -93,8 +93,8 @@ class DatumTest extends AnyFlatSpec with Matchers with EitherValues {
     val datumResult = datumJson.map(json => json.as[Datum])
     val datum = Datum.decode(datumResult.value)
 
-    datum.isRight shouldBe true
-    datum.value shouldBe basic
+    (datum.isRight && 
+    datum.value == basic) shouldBe true
   }
 
   it should "give a JSON string for basic Datum with check" in {
@@ -108,8 +108,8 @@ class DatumTest extends AnyFlatSpec with Matchers with EitherValues {
     val datumResult = datumJson.map(json => json.as[Datum])
     val datum = Datum.decode(datumResult.value)
 
-    datum.isRight shouldBe true
-    datum.value shouldBe basicWithCheck
+    (datum.isRight &&
+    datum.value == basicWithCheck) shouldBe true
   }
 
   it should "return JSON for Datum with vector value" in {
@@ -123,10 +123,7 @@ class DatumTest extends AnyFlatSpec with Matchers with EitherValues {
     val datumResult = datumJson.map(json => json.as[Datum])
     val datum = Datum.decode(datumResult.value)
 
-    datum.isRight shouldBe true
-
-    println(datum)
-    datum.value shouldBe person
+    (datum.isRight && datum.value == person) shouldBe true
   }
 
 }
