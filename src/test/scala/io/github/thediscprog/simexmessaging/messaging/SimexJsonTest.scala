@@ -32,9 +32,11 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
 
     val error = Simex.deSerializeFromString(errorStr)
 
+    println(error)
+
     (error.isLeft &&
     error.left.value == ParsingStringError(
-      "expected whitespace or eof got '{ ' (line 34, column 3)"
+      "expected whitespace or eof got '{ ' (line 35, column 3)"
     )) shouldBe true
   }
 

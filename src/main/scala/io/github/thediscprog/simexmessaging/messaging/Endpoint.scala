@@ -13,6 +13,7 @@ case class Endpoint(
     resource: String,
     method: String,
     entity: Option[String],
+    timestamp: Option[String],
     version: String = "v1"
 )
 
