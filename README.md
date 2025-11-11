@@ -10,8 +10,7 @@ It is designed to manage software complexity by:
 
 This software is distributed under **GNU General Public License Version 3.**
 
-Please see the paper **[Managing Software Complexity and Security Research Paper](https://github.com/TheDiscProg/SIMEX-API)** for more 
-information.
+Please see the Wiki pages for more information.
 
 To use in a SBT project: 
 libraryDependencies += "io.github.thediscprog" %% "simex-messaging" % "0.9.5"
