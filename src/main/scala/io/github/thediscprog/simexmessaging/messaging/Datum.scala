@@ -9,7 +9,7 @@ import io.github.thediscprog.slogic.Xor
 
 /** Class to hold a single piece of data - hence datum
   * @param field - the name of the datum
-  * @param check - Optional checks as determined by application
+  * @param check - Currently, not used and set to None
   * @param value - the value of the datum, either a single value or a vector of Datum
   */
 case class Datum(

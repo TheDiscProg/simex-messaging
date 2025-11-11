@@ -1,5 +1,7 @@
 # Simex (Simple Message Exchange) Messaging API
-Simex (Simple Message Exchange) Messaging API is a method for two entities to communicate with each other over the network.
+
+Simex (Simple Message Exchange) Messaging API is a method for two services to communicate with each other over the network using
+a single endpoint.
 
 It is designed to manage software complexity by:
 
@@ -10,11 +12,13 @@ It is designed to manage software complexity by:
 
 This software is distributed under **GNU General Public License Version 3.**
 
-Please see the paper **[Managing Software Complexity and Security Research Paper](https://github.com/TheDiscProg/SIMEX-API)** for more 
+Please see the paper **[Managing Software Complexity and Security in Software Engineering Paper](https://github.com/TheDiscProg/Simex-SOAA_Research)** for more 
 information.
 
 To use in a SBT project: 
-libraryDependencies += "io.github.thediscprog" %% "simex-messaging" % "0.9.4"
+libraryDependencies += "io.github.thediscprog" %% "simex-messaging" % *"X.X.X"*
+
+Here, *'X.X.X'* is the [latest release](https://github.com/TheDiscProg/simex-messaging/releases/latest)
 
 ## SIMEX Format
 The message can be in any format, such as JSON, XML, binary, etc. The manner in which a Simex is transmitted 'across the wire'
