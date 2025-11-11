@@ -9,7 +9,9 @@ trait SimexTestFixture {
   val endpoint = Endpoint(
     resource = "service.auth",
     method = "select",
-    entity = None
+    entity = None,
+    timestamp = Some("2023-01-01T00:00:00.000Z"),
+    version = "v1"
   )
 
   val client = Client(

@@ -14,7 +14,7 @@ Please see the paper **[Managing Software Complexity and Security Research Paper
 information.
 
 To use in a SBT project: 
-libraryDependencies += "io.github.thediscprog" %% "simex-messaging" % "0.9.4"
+libraryDependencies += "io.github.thediscprog" %% "simex-messaging" % "0.9.5"
 
 ## SIMEX Format
 The message can be in any format, such as JSON, XML, binary, etc. The manner in which a Simex is transmitted 'across the wire'
