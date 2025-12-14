@@ -1,9 +1,8 @@
 package io.github.thediscprog.simexmessaging.messaging
 
+import io.circe.*
 import io.circe.Decoder.Result
-import io.circe.generic.auto._
-import io.circe.syntax._
-import io.circe._
+import io.circe.syntax.*
 import io.github.thediscprog.simexmessaging.entities.ConversionError.ParsingJsonError
 import io.github.thediscprog.slogic.Xor
 

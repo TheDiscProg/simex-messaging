@@ -35,8 +35,8 @@ class SimexTest extends AnyFlatSpec with SimexTestFixture with Matchers with Opt
 
     (username.isDefined &&
       password.isDefined &&
-    username.value == "tester@test.com" &&
-    password.value == "password1234") shouldBe true
+      username.value == "tester@test.com" &&
+      password.value == "password1234") shouldBe true
   }
 
   it should "get authorization token" in {
@@ -51,6 +51,6 @@ class SimexTest extends AnyFlatSpec with SimexTestFixture with Matchers with Opt
     val refreshToken = select.getRefreshToken
 
     (refreshToken.isDefined &&
-    refreshToken.value == "sometoken") shouldBe true
+      refreshToken.value == "sometoken") shouldBe true
   }
 }

@@ -4,7 +4,7 @@ import xerial.sbt.Sonatype._
 
 lazy val scala2 = "2.13.15"
 lazy val scala3 = "3.7.3"
-lazy val supportedScalaVersions = List(scala2, scala3)
+lazy val supportedScalaVersions = List(scala3)
 
 lazy val commonSettings = Seq(
   scalaVersion := scala3,
@@ -65,6 +65,7 @@ sonatypeCredentialHost := "central.sonatype.com"
 sonatypeRepository := "https://central.sonatype.com/api/v1/publisher/"
 
 ThisBuild / versionScheme := Some("early-semver")
+
 
 addCommandAlias("cleanTest", ";clean;scalafmt;test:scalafmt;test;")
 addCommandAlias("cleanCoverage", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
