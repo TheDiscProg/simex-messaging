@@ -4,7 +4,10 @@ import io.circe.syntax._
 import org.scalatest.EitherValues
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import io.github.thediscprog.simexmessaging.entities.ConversionError.{ParsingJsonError, ParsingStringError}
+import io.github.thediscprog.simexmessaging.entities.ConversionError.{
+  ParsingJsonError,
+  ParsingStringError
+}
 import io.github.thediscprog.simexmessaging.test.SimexTestFixture
 
 class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with EitherValues {
@@ -23,8 +26,8 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
   it should "deserialize a Simex message" in {
     val deserialisedMsg = Simex.deSerializeFromString(testString)
 
-    (deserialisedMsg == Right(authRequest) && 
-    deserialisedMsg.value.destination.version == "v1") shouldBe true
+    (deserialisedMsg == Right(authRequest) &&
+      deserialisedMsg.value.destination.version == "v1") shouldBe true
   }
 
   it should "handle string to Json conversion errors" in {
@@ -35,17 +38,17 @@ class SimexJsonTest extends AnyFlatSpec with SimexTestFixture with Matchers with
     println(error)
 
     (error.isLeft &&
-    error.left.value == ParsingStringError(
-      "expected whitespace or eof got '{ ' (line 35, column 3)"
-    )) shouldBe true
+      error.left.value == ParsingStringError(
+        "expected whitespace or eof got '{ ' (line 35, column 3)"
+      )) shouldBe true
   }
 
   it should "handle json to simex conversion error" in {
     val error = Simex.deSerializeFromString(badSimexJson)
 
     (error.isLeft &&
-    error.left.value == ParsingJsonError(
-      "DecodingFailure at .destination.resource: Missing required field"
-    )) shouldBe true
+      error.left.value == ParsingJsonError(
+        "DecodingFailure at .destination.resource: Missing required field"
+      )) shouldBe true
   }
 }
