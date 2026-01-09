@@ -4,6 +4,7 @@ import io.circe.Decoder.Result
 import io.circe.generic.auto._
 import io.circe.syntax._
 import io.circe._
+import io.github.thediscprog.simexmessaging.entities.ConversionError
 import io.github.thediscprog.simexmessaging.entities.ConversionError.ParsingJsonError
 import io.github.thediscprog.slogic.Xor
 
@@ -68,7 +69,7 @@ object Datum {
     }
   }
 
-  def decode(rst: Result[Datum]): Either[ParsingJsonError, Datum] =
+  def decode(rst: Result[Datum]): Either[ConversionError, Datum] =
     rst.fold(
       err => Left(ParsingJsonError(err.getMessage())),
       datum => Right(datum)
