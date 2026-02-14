@@ -7,7 +7,7 @@ import io.circe.{Decoder, Encoder}
   * @param clientId - Unique across systems - can be hostname or some other way to identify the system
   * @param requestId - Request ID, unique when matched with client ID
   * @param sourceEndpoint - the resource/sourceEndpoint destination that generated the request
-  * @param authorization - the authorisation string that authenticates that this is a genuine request
+  * @param authorization - the authorization string that authenticates that this is a genuine request
   */
 case class Client(
     clientId: String,

@@ -61,6 +61,6 @@ case object Security extends StringEnum[Security] with StringCirceEnum[Security]
     }
   }
 
-  def determineSecurityLevel(simex: Simex): Security =
+  def determineSecurityLevel(simex: Simex[_]): Security =
     fromString(simex.originator.security)
 }

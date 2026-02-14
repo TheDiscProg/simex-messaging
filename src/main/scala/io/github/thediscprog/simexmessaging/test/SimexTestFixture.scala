@@ -1,15 +1,6 @@
 package io.github.thediscprog.simexmessaging.test
 
-import io.github.thediscprog.simexmessaging.messaging.{
-  Client,
-  Datum,
-  Endpoint,
-  Method,
-  Originator,
-  Simex
-}
-import io.github.thediscprog.simexmessaging.messaging.Simex._
-import io.github.thediscprog.slogic.Xor
+import io.github.thediscprog.simexmessaging.messaging._
 
 trait SimexTestFixture {
 
@@ -45,22 +36,7 @@ trait SimexTestFixture {
     data = Vector()
   )
 
-  val authenticationRequest = simexMessage.copy(
-    destination = simexMessage.destination.copy(entity = Some(AUTHENTICATION_ENTITY)),
-    data = Vector(
-      Datum("username", None, Xor.applyLeft("tester@test.com")),
-      Datum("password", None, Xor.applyLeft("password1234"))
-    )
-  )
-
-  val refreshTokenRequest = simexMessage.copy(
-    destination = simexMessage.destination.copy(entity = Some(REFRESH_TOKEN_ENTITY)),
-    data = Vector(
-      Datum("refresh_token", None, Xor.applyLeft("sometoken"))
-    )
-  )
-
-  def getMessage(method: Method, entity: Option[String], data: Vector[Datum]): Simex =
+  def getMessage[A](method: Method, entity: Option[String], data: A): Simex[A] =
     method match {
       case Method.SELECT =>
         simexMessage.copy(
@@ -99,32 +75,4 @@ trait SimexTestFixture {
         )
     }
 
-  val badSimexJson =
-    """
-      |{
-      |  "destination" : {
-      |    "method" : "select"
-      |  },
-      |  "client" : {
-      |    "clientId" : "client1",
-      |    "requestId" : "request1",
-      |    "sourceEndpoint" : "client",
-      |    "authorization" : "securitytoken"
-      |  },
-      |  "originator" : {
-      |    "clientId" : "client1",
-      |    "requestId" : "request1",
-      |    "sourceEndpoint" : "client",
-      |    "originalToken" : "securitytoken",
-      |    "security": "1"
-      |  },
-      |  "data" : [
-      |    {
-      |      "field" : "customerId",
-      |      "check" : "eq",
-      |      "value" : "1"
-      |    }
-      |  ]
-      |}
-      |""".stripMargin
 }
