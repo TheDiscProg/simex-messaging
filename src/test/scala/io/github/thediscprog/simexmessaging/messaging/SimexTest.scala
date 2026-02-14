@@ -28,29 +28,4 @@ class SimexTest extends AnyFlatSpec with SimexTestFixture with Matchers with Opt
 
     Simex.checkEndPointValidity(badMessage) shouldBe false
   }
-
-  it should "extract username and password" in {
-    val username = authenticationRequest.getUsername
-    val password = authenticationRequest.getPassword
-
-    (username.isDefined &&
-      password.isDefined &&
-      username.value == "tester@test.com" &&
-      password.value == "password1234") shouldBe true
-  }
-
-  it should "get authorization token" in {
-    val select = authenticationRequest
-    val accessToken = select.getAuthorization
-
-    accessToken shouldBe "securitytoken"
-  }
-
-  it should "get refresh token" in {
-    val select = refreshTokenRequest
-    val refreshToken = select.getRefreshToken
-
-    (refreshToken.isDefined &&
-      refreshToken.value == "sometoken") shouldBe true
-  }
 }

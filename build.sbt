@@ -29,7 +29,7 @@ lazy val root = (project in file("."))
     crossScalaVersions := supportedScalaVersions
   )
 
-ThisBuild / version := "0.9.8"
+ThisBuild / version := "1.0.0"
 ThisBuild / organization := "io.github.thediscprog"
 ThisBuild / organizationName := "thediscprog"
 ThisBuild / organizationHomepage := Some(url("https://github.com/TheDiscProg"))
