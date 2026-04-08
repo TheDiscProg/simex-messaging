@@ -2,13 +2,14 @@ import sbt.librarymanagement.CrossVersion
 import sbt.url
 import xerial.sbt.Sonatype._
 
-
 lazy val scala2 = "2.13.18"
-lazy val scala37 = "3.7.3"
-lazy val supportedScalaVersions = List(scala2, scala37)
+lazy val scala3lts = "3.3.7"
+lazy val scala37 = "3.7.4"
+lazy val scala38 = "3.8.3"
+lazy val supportedScalaVersions = List(scala2, scala3lts, scala37, scala38)
 
 lazy val commonSettings = Seq(
-  scalaVersion := scala37,
+  scalaVersion := scala38,
   libraryDependencies ++= Dependencies.all
 )
 

@@ -7,6 +7,7 @@ import io.circe.{Decoder, Encoder}
   * @param resource - The unique identfier for routing messages to handlers/orchestrators
   * @param method - The method to apply - one of SELECT, UPDATE, INSERT, DELETE, PROCESS, RESPONSE - see Method
   * @param entity - a business object to which this request should be applied to
+  * @param timestamp - the time the request was made, defaults to current time
   * @param version - the version of the call, defaults to v1
   */
 case class Endpoint(
