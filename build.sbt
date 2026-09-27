@@ -3,13 +3,12 @@ import sbt.url
 import xerial.sbt.Sonatype._
 
 lazy val scala2 = "2.13.18"
-lazy val scala3lts = "3.3.7"
-lazy val scala37 = "3.7.4"
-lazy val scala38 = "3.8.3"
-lazy val supportedScalaVersions = List(scala2, scala3lts, scala37, scala38)
+lazy val scala3lts = "3.3.8"
+lazy val scala3latest = "3.9.0"
+lazy val supportedScalaVersions = List(scala2, scala3lts, scala3latest)
 
 lazy val commonSettings = Seq(
-  scalaVersion := scala38,
+  scalaVersion := scala3latest,
   libraryDependencies ++= Dependencies.all
 )
 
@@ -30,7 +29,7 @@ lazy val root = (project in file("."))
     crossScalaVersions := supportedScalaVersions
   )
 
-ThisBuild / version := "1.1.0"
+ThisBuild / version := "2.0.0"
 ThisBuild / organization := "io.github.thediscprog"
 ThisBuild / organizationName := "thediscprog"
 ThisBuild / organizationHomepage := Some(url("https://github.com/TheDiscProg"))
